@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FarmConnect - Login/Signup</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Monaco&display=swap');
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0; /* Neutral background color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        /* Background for the first interface only */
+        .background-container {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-image: url('https://i.pinimg.com/originals/c1/5e/2b/c15e2b6dd777e5bb711182b6b035955d.jpg');
+            background-size: cover;
+            border: 10px solid white; /* White matte border */
+            box-sizing: border-box;
+            z-index: -1; /* Place the background image behind other elements */
+        }
+
+        /* Background for the second interface only */
+        .second-background-container {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-image: image(WhatsApp Image 2024-09-01 at 15.51.19_0ba6ef79);
+            background-size: cover;
+            border: 10px solid white; /* White matte border */
+            box-sizing: border-box;
+            z-index: -1; /* Place the background image behind other elements */
+        }
+
+        .title-container {
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .title-container img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%; /* Make the image spherical */
+            animation: spin 4s infinite linear, orbit 10s infinite linear; /* Revolving and rotating animation */
+        }
+
+        .title-container .title {
+            font-size: 76px;
+            color: beige;
+            font-family: 'Monaco', monospace; /* Set the font to Monaco */
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 40px;
+            border-radius: 20px; /* Rounded corners */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .option {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        label {
+            font-size: 18px;
+        }
+
+        input[type="radio"] {
+            transform: scale(1.5);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 80px;
+        }
+
+        button {
+            background-color: #000; /* Black submit button */
+            color: white; /* White text */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Image with Matte Border for First Interface -->
+    <div class="background-container"></div>
+
+    <!-- Title Section for the First Interface -->
+    <div class="title-container">
+        <img src="https://cdnvb4.haiper.ai/jobs/66d07372ba6210e00c1ce258/66d0761cba6210e00c1ce734/2.jpg" alt="Farm Image">
+        <div class="title">Farmहित</div>
+    </div>
+
+    <!-- First Interface: Login As -->
+    <div class="container" id="loginContainer">
+        <h1>LOGGING IN AS?</h1>
+        <form id="loginForm">
+            <div class="option">
+                <input type="radio" id="farmer" name="userType" value="Farmer" required>
+                <label for="farmer">Farmer</label>
+            </div>
+            <button type="submit">Next</button>
+            <a href="index.html">back to home</a>
+        </form>
+    </div>
+
+    <!-- Second Interface: Signup (New Background Image and White Matte Border) -->
+    <div class="second-background-container" style="display:none;"></div>
+    <div class="container" id="signupContainer" style="display:none;">
+        <h1 style="font-size: 48px;">Details</h1> <!-- Increased size to 48 -->
+        <form id="signupForm">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" pattern="[A-Za-z ]+" title="Please enter only alphabets" required>
+            </div>
+            <div class="form-group">
+                <label for="contact">Contact Number:</label>
+                <input type="text" id="contact" name="contact" pattern="[0-9]+" title="Please enter a valid Indian mobile number" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" required></textarea>
+            </div>
+            <button type="submit">Submit</button>
+            <a href="index.html">back to home</a>
+        </form>
+    </div>
+
+    <script>
+        // Handle the first form submission (Login As)
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            // Hide login interface and show signup interface
+            document.getElementById('loginContainer').style.display = 'none';
+            document.getElementById('signupContainer').style.display = 'block';
+            document.querySelector('.background-container').style.display = 'none';
+            document.querySelector('.title-container').style.display = 'none';
+            document.querySelector('.second-background-container').style.display = 'block';
+        });
+
+        // Handle the second form submission (Signup)
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+            const nameInput = document.getElementById('name').value;
+            const contactInput = document.getElementById('contact').value;
+
+            // Simple Validation
+            const namePattern = /^[A-Za-z ]+$/;
+            if (!namePattern.test(nameInput)) {
+                alert("Please enter a valid name.");
+                event.preventDefault();
+                return;
+            }
+
+            const contactPattern = /^[0-9]+$/;
+            if (!contactPattern.test(contactInput)) {
+                alert("Please enter a valid Indian mobile number.");
+                event.preventDefault();
+                return;
+            }
+
+            // Proceed with form submission
+            alert("Signup successful!");
+        });
+    </script>
+</body>
+</html>
